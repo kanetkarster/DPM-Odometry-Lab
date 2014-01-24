@@ -41,10 +41,12 @@ public class SquareDriver {
 	}
 
 	private static int convertDistance(double radius, double distance) {
+		// ( D / R) * (360 / 2PI)
 		return (int) ((180.0 * distance) / (Math.PI * radius));
 	}
 
 	private static int convertAngle(double radius, double width, double angle) {
+		//(width * angle / radius ) / (2)
 		return convertDistance(radius, Math.PI * width * angle / 360.0);
 	}
 }

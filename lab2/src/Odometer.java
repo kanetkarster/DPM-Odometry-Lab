@@ -14,9 +14,8 @@ public class Odometer extends Thread {
 	// odometer update period, in ms
 	private static final int ODOMETER_PERIOD = 25;
 	//LCD update period
-	private static final int LCD_SLEEP_TIME = 500;
 	
-	private static double WHEEL_BASE = 16.8;
+	private static double WHEEL_BASE = 15.5;
 	private static double WHEEL_RADIUS = 2.16;
 	
 	/*variables*/ 
@@ -108,7 +107,7 @@ public class Odometer extends Thread {
 			if (update[1])
 				position[1] = y;
 			if (update[2])
-				position[2] = theta;
+				position[2] = theta / (2 * 3.141592) * 360;
 		}
 	}
 
