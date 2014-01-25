@@ -1,7 +1,10 @@
 /*
  * OdometryDisplay.java
  */
+import lejos.nxt.ColorSensor;
 import lejos.nxt.LCD;
+import lejos.nxt.SensorPort;
+import lejos.robotics.Color;
 
 public class OdometryDisplay extends Thread {
 	private static final long DISPLAY_PERIOD = 250;
@@ -35,7 +38,12 @@ public class OdometryDisplay extends Thread {
 			for (int i = 0; i < 3; i++) {
 				LCD.drawString(formattedDoubleToString(position[i], 2), 3, i);
 			}
-
+		  ColorSensor cs = new ColorSensor(SensorPort.S1);
+		  Color color = cs.getColor();
+		  
+		  //LCD.drawString("Red = " + color.getRed() , 0, 3);
+		  LCD.drawString("LightVal = " + cs.getNormalizedLightValue() , 0, 3);
+		  LCD.drawString("#lines:" + Integer.toString(OdometryCorrection.counter), 0, 4);
 			// throttle the OdometryDisplay
 			displayEnd = System.currentTimeMillis();
 			if (displayEnd - displayStart < DISPLAY_PERIOD) {

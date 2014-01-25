@@ -8,8 +8,8 @@ public class Lab2 {
 		int buttonChoice;
 		// some objects that need to be instantiated
 		Odometer odometer = new Odometer();
-		OdometryDisplay odometryDisplay = new OdometryDisplay(odometer);
 		OdometryCorrection odometryCorrection = new OdometryCorrection(odometer);
+		OdometryDisplay odometryDisplay = new OdometryDisplay(odometer);
 
 		do {
 			// clear the display
@@ -31,16 +31,15 @@ public class Lab2 {
 				motor.forward();
 				motor.flt();
 			}
-
 			// start only the odometer and the odometry display
 			odometer.start();
 			odometryDisplay.start();
 		} else {
 			// start the odometer, the odometry display and (possibly) the
 			// odometry correction
-			odometer.start();
+			//odometer.start();
 			odometryDisplay.start();
-			// odometryCorrection.start();
+			odometryCorrection.start();
 
 			// spawn a new Thread to avoid SquareDriver.drive() from blocking
 			(new Thread() {
