@@ -11,11 +11,12 @@ public class OdometryCorrection extends Thread {
 	private static final int LINE_VALUE = 280;
 	private Odometer odometer;
     private   ColorSensor cs = new ColorSensor(SensorPort.S1);
+    private Object lock;
     public static int counter = 0;
 	// constructor
 	public OdometryCorrection(Odometer odometer) {
 		this.odometer = odometer;
-		this.odometer.start();
+		lock = new Object();
 	}
 
 	// run method (required for Thread)
@@ -33,7 +34,9 @@ public class OdometryCorrection extends Thread {
 				}
             }
 			// put your correction code here
-
+            synchronized (lock) {
+            	
+            }
 			// this ensure the odometry correction occurs only once every period
 			correctionEnd = System.currentTimeMillis();
 			if (correctionEnd - correctionStart < CORRECTION_PERIOD) {
