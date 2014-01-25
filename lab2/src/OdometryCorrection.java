@@ -8,6 +8,7 @@ import lejos.nxt.SensorPort;
 
 public class OdometryCorrection extends Thread {
 	private static final long CORRECTION_PERIOD = 10;
+	private static final int LINE_VALUE = 280;
 	private Odometer odometer;
     private   ColorSensor cs = new ColorSensor(SensorPort.S1);
     public static int counter = 0;
@@ -22,7 +23,7 @@ public class OdometryCorrection extends Thread {
 		long correctionStart, correctionEnd;
 		while (true) {
 			correctionStart = System.currentTimeMillis();
-            if(cs.getNormalizedLightValue() < 375)
+            if(cs.getNormalizedLightValue() < LINE_VALUE)
             {
             	counter++;
             	try {
