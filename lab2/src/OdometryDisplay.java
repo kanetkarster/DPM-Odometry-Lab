@@ -43,7 +43,10 @@ public class OdometryDisplay extends Thread {
 		  
 		  //LCD.drawString("Red = " + color.getRed() , 0, 3);
 		  LCD.drawString("LightVal = " + cs.getNormalizedLightValue() , 0, 3);
-		  LCD.drawString("#lines:" + Integer.toString(OdometryCorrection.counter), 0, 4);
+
+		  //DEBUGGING: DRAWS # of Black Lines Crossed
+		  //LCD.drawString("#lines:" + Integer.toString(OdometryCorrection.counter), 0, 4);
+
 			// throttle the OdometryDisplay
 			displayEnd = System.currentTimeMillis();
 			if (displayEnd - displayStart < DISPLAY_PERIOD) {

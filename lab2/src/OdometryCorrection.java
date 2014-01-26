@@ -21,10 +21,10 @@ public class OdometryCorrection extends Thread {
 	private Odometer odometer;
     private   ColorSensor cs = new ColorSensor(SensorPort.S1);
     private Object lock;
-    //counts black lines crossed over
-    public static int counter = 0;
+/*    //counts black lines crossed over
+    public static int counter = 0;*/
     //stores values returned
-    private double odoX, odoY;
+    private double odoX, odoY, odoT;
     //Differences of X and Y values with approximate line values
     private double errorX;
     private double errorY;
@@ -41,16 +41,19 @@ public class OdometryCorrection extends Thread {
 			correctionStart = System.currentTimeMillis();
             if(cs.getNormalizedLightValue() < LINE_VALUE)
             {	
-            	//increases number of lines passed over
-            	counter++;
-            	
+/*            	//increases number of lines passed over
+            	counter++;*/
             	synchronized (lock){
+            		
             		//updates current values of odometer
+            		odoT = odometer.getTheta();
             		odoX = odometer.getX();
             		odoY = odometer.getY();
+
             		//sees how many centimeter's the robot THINKS it is away from a line
             		errorX = (odoX % SQUARE_SIZE);
             		errorY = (odoY % SQUARE_SIZE);
+            		
             		/*
             		 * if that is a reasonable distance (ie. it is most likely not on a line or just turned over a line)
             		 * it rounds it's current position to a factor of the size of the square
@@ -84,9 +87,5 @@ public class OdometryCorrection extends Thread {
 				}
 			}
 		}
-	}
-	public int getCounter()
-	{
-		return counter;
 	}
 }
