@@ -13,16 +13,17 @@ public class Odometer extends Thread {
 	NXTRegulatedMotor rightMotor = Motor.B;
 	// odometer update period, in ms
 	private static final int ODOMETER_PERIOD = 25;
-	//LCD update period
-	
+
+	//constants 
 	private static double WHEEL_BASE = 15.5;
 	private static double WHEEL_RADIUS = 2.16;
 	
 	/*variables*/ 
-	private static int previousTachoL;          /* Tacho L at last sample */
-	private static int previousTachoR;          /* Tacho R at last sample */
-	private static int currentTachoL;           /* Current tacho L */
-	private static int currentTachoR;           /* Current tacho R */
+	//Tacho Count at last thread call
+	private static int previousTachoL,previousTachoR;
+	//Tacho Count when thread wakes
+	private static int currentTachoL,  currentTachoR;
+	//current position
 	private double x, y, theta;
 
 	
