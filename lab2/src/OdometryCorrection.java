@@ -50,17 +50,16 @@ public class OdometryCorrection extends Thread {
             		odoY = odometer.getY();
 
             		//sees how many centimeter's the robot THINKS it is away from a line
-            		errorX = (odoX % SQUARE_SIZE);
-            		errorY = (odoY % SQUARE_SIZE);
-            		
+            		errorX = (odoX % SQUARE_SIZE/2);
+            		errorY = (odoY % SQUARE_SIZE/2);
             		/*
             		 * if that is a reasonable distance (ie. it is most likely not on a line or just turned over a line)
             		 * it rounds it's current position to a factor of the size of the square
             		 */
-            		if(errorX < THRESHOLD){
+            		if(errorX < THRESHOLD && ((int) errorX)%2 != 1){
             			odometer.setX(SQUARE_SIZE * Math.round(odoX / SQUARE_SIZE));
             		}
-            		if(errorY < THRESHOLD){
+            		if(errorY < THRESHOLD && ((int) errorY)%2 != 1){
             			odometer.setY(SQUARE_SIZE * Math.round(odoY / SQUARE_SIZE));
             		}
             	}
