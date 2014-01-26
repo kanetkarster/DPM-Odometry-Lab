@@ -24,7 +24,7 @@ public class OdometryCorrection extends Thread {
 /*    //counts black lines crossed over
     public static int counter = 0;*/
     //stores values returned
-    private double odoX, odoY, odoT;
+    private double odoX, odoY;
     //Differences of X and Y values with approximate line values
     private double errorX;
     private double errorY;
@@ -46,7 +46,6 @@ public class OdometryCorrection extends Thread {
             	synchronized (lock){
             		
             		//updates current values of odometer
-            		odoT = odometer.getTheta();
             		odoX = odometer.getX();
             		odoY = odometer.getY();
 
