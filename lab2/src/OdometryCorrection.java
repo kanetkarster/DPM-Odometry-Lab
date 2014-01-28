@@ -24,7 +24,7 @@ public class OdometryCorrection extends Thread {
 /*    //counts black lines crossed over
     public static int counter = 0;*/
     //stores values returned
-    private double odoX, odoY;
+    private double odoX, odoY, odoT;
     //Differences of X and Y values with approximate line values
     private double errorX;
     private double errorY;
@@ -48,7 +48,7 @@ public class OdometryCorrection extends Thread {
             		//updates current values of odometer
             		odoX = odometer.getX();
             		odoY = odometer.getY();
-
+            		odoT = odometer.getTheta();
             		//sees how many centimeter's the robot THINKS it is away from a line
             		errorX = (odoX % SQUARE_SIZE/2);
             		errorY = (odoY % SQUARE_SIZE/2);
@@ -57,13 +57,13 @@ public class OdometryCorrection extends Thread {
             		 * it rounds it's current position to a factor of the size of the square
             		 */
             		if(errorX < THRESHOLD && ((int) errorX)%2 != 1){
-            			odometer.setX(SQUARE_SIZE * Math.round(odoX / SQUARE_SIZE));
+            			odometer.setX(SQUARE_SIZE * Math.round(odoX * Math.cos(odoT) / SQUARE_SIZE));
             		}
             		if(errorY < THRESHOLD && ((int) errorY)%2 != 1){
-            			odometer.setY(SQUARE_SIZE * Math.round(odoY / SQUARE_SIZE));
+            			odometer.setY(SQUARE_SIZE * Math.round(odoY * Math.sin(odoT) / SQUARE_SIZE));
             		}
             	}
-            	
+
             	try {
             		//waits for one second to avoid scanning one line multiple times
 					Thread.sleep(1000);
