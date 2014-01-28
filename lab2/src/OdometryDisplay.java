@@ -41,7 +41,7 @@ public class OdometryDisplay extends Thread {
 		  ColorSensor cs = new ColorSensor(SensorPort.S1);
 		  Color color = cs.getColor();
 		  
-		  //LCD.drawString("Red = " + color.getRed() , 0, 3);
+		  //Draws normalized light value of sensor
 		  LCD.drawString("LightVal = " + cs.getNormalizedLightValue() , 0, 3);
 
 		  //DEBUGGING: DRAWS # of Black Lines Crossed

@@ -60,27 +60,35 @@ public class Odometer extends Thread {
 
 		while (true) {
 			updateStart = System.currentTimeMillis();
-			// put (some of) your odometer code here
+			//variables to calculate
 			double leftDistance, rightDistance, deltaDistance, deltaTheta, dX, dY;
+			//updates tachometer count of Left and Right motors
 			currentTachoL = leftMotor.getTachoCount();
 			currentTachoR = rightMotor.getTachoCount();
-			
+			/* 
+			 * Calculates how many degrees the servos have rotated since the last poll
+			 * Converts that value to a circumference -- Equal to the change in distance since the last poll
+			 */
 			leftDistance = 3.14159 * WHEEL_RADIUS * (currentTachoL - previousTachoL) / 180;
 			rightDistance = 3.14159 * WHEEL_RADIUS * (currentTachoR - previousTachoR) / 180;
-			
+			//updates TachoCount to new value
 			previousTachoL = currentTachoL;
 			previousTachoR = currentTachoR;
-			
+			//Averages the left and right distances to approximate the change relative to the robot's center
 			deltaDistance = .5 * (leftDistance + rightDistance);
+			/*
+			 * Estimates a change in heading by calculating the distance change 
+			 * of the left and right motors relative to the center of the robot
+			 */			
 			deltaTheta = (leftDistance - rightDistance) / WHEEL_BASE;
-
+			//X, Y and Theta must be changed at the same time, so synchronization is used
 			synchronized (lock) {
-				// don't use the variables x, y, or theta anywhere but here!
-				theta += deltaTheta;
-				
+				//Increment theta, around 360 degrees
+				theta = (theta + deltaTheta) % 360;
+				//calculate change in X and Y coordinates
 				dX = deltaDistance * Math.sin(theta);
 				dY = deltaDistance * Math.cos(theta);
-				
+				//Increment x and y
 				x += dX;
 				y += dY;
 			}

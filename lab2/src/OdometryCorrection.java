@@ -68,7 +68,7 @@ public class OdometryCorrection extends Thread {
             		//waits for one second to avoid scanning one line multiple times
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
-					//does nothing
+					//does nothing, thread not expected to be interrupted
 				}
             }
 
