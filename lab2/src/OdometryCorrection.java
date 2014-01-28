@@ -4,6 +4,10 @@ import lejos.nxt.SensorPort;
 
 /* 
  * OdometryCorrection.java
+ * If the Robot passes a Line and The odometer says it should be close to a line
+ * the robot updates it's position accordingly
+ * 
+ * ie: If the robot is at <15.9, 28> and it crosses a line it will change it's position vector to <15.24, 28>
  */
 
 public class OdometryCorrection extends Thread {

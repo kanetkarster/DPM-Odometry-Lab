@@ -1,5 +1,10 @@
 /*
  * Lab2.java
+ * 
+ * start odometer
+ * starts odometry correction
+ * 
+ * has robot move in a square with odometers running
  */
 import lejos.nxt.*;
 

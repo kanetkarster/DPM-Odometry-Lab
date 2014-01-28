@@ -1,5 +1,15 @@
 /*
  * OdometryDisplay.java
+ * 
+ * Displays information regarding the robots position and surroundings
+ * 
+ * Prints in the order:
+ * 
+ * X Coordinate
+ * Y Coordinate
+ * Angle Theta 
+ * 
+ * Color Value
  */
 import lejos.nxt.ColorSensor;
 import lejos.nxt.LCD;

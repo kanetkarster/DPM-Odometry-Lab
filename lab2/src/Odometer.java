@@ -3,12 +3,17 @@ import lejos.util.*;
 
 /*
  * Odometer.java
+ * Constantly updates the X and Y position of the robot
+ * 
+ * Assumptions:
+ * 
+ * short time interval
+ * angular velocity is constant
  */
 
 public class Odometer extends Thread {
 	// robot position
 	/*constants*/
-	
 	NXTRegulatedMotor leftMotor = Motor.A;
 	NXTRegulatedMotor rightMotor = Motor.B;
 	// odometer update period, in ms

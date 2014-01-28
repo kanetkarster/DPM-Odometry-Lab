@@ -1,5 +1,7 @@
 /*
  * SquareDriver.java
+ * 
+ * Has the robot move in squares with side length 60.96 cm
  */
 import lejos.nxt.*;
 
